@@ -25,7 +25,7 @@ public class TechProject extends Model<TechProject> {
 
     private Date endTime;
 
-    private String ext;
+    private String description;
 
     private Integer createUser;
     @TableField(fill = FieldFill.INSERT)

@@ -12,5 +12,5 @@ import org.apache.ibatis.annotations.Select;
 public interface TechProjectMapper extends BaseMapper<TechProject> {
 
     @Select("SELECT * FROM tech_project WHERE sex = #{sex}")
-    IPage<TechProject> selectPageBySex(Page<?> page, String sex);
+    IPage<TechProject> selectPageByParam(Page<?> page, String sex);
 }
