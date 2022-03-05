@@ -15,7 +15,7 @@ import java.util.Date;
 public class TechProject extends Model<TechProject> {
 
     @TableId(value = "id", type = IdType.AUTO)
-    private int id;
+    private Integer id;
 
     private String name;
 

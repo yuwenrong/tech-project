@@ -1,7 +1,9 @@
 package com.cto.freemarker.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.cto.freemarker.entity.Role;
 import com.cto.freemarker.entity.TechProject;
 import com.cto.freemarker.entity.dto.TechProjectQueryDTO;
 
@@ -14,11 +16,14 @@ public interface TechProjectService {
 
     List<TechProject> queryAll();
 
-    TechProject queryById(int id);
+    TechProject queryById(Integer id);
 
-    void deleteById(int id);
+    void deleteById(Integer id);
 
     List<TechProject> queryByParam();
 
     IPage<TechProject> page(Page<Object> objectPage, TechProjectQueryDTO search);
+
+    void updateById(TechProject techProject);
+
 }

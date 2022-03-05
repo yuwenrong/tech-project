@@ -29,18 +29,23 @@ public class TechProjectServiceImpl implements TechProjectService {
     }
 
     @Override
-    public TechProject queryById(int id) {
+    public TechProject queryById(Integer id) {
         return techProjectMapper.selectById(id);
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(Integer id) {
         techProjectMapper.deleteById(id);
     }
 
     @Override
     public List<TechProject> queryByParam() {
         return null;
+    }
+
+    @Override
+    public void updateById(TechProject techProject) {
+        techProjectMapper.updateById(techProject);
     }
 
     @Override
