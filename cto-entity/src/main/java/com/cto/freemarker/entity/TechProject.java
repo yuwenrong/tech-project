@@ -2,6 +2,7 @@ package com.cto.freemarker.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,6 +12,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Builder
+@AllArgsConstructor
 @TableName(value = "tech_project")
 public class TechProject extends Model<TechProject> {
 
@@ -19,11 +21,11 @@ public class TechProject extends Model<TechProject> {
 
     private String name;
 
-    private int source;
+    private String source;
 
-    private Date beginTime;
+    private String beginTime;
 
-    private Date endTime;
+    private String endTime;
 
     private String description;
 
@@ -35,7 +37,7 @@ public class TechProject extends Model<TechProject> {
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
 
-    private int flag;
+    private Integer status;
 
 
 }

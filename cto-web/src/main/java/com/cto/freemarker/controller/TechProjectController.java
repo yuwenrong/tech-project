@@ -76,6 +76,7 @@ public class TechProjectController extends BaseController {
     public Object saveOrUpdate(TechProject techProject) {
         Date date = new Date();
         if (techProject.getId() == null) {
+            techProject.setCreateTime(date);
             techProjectService.add(techProject);
         } else {
             techProjectService.updateById(techProject);
