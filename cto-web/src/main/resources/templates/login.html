@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>登录</title>
+    <link href="/static/inspinia/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/inspinia/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/static/inspinia/css/animate.css" rel="stylesheet">
+    <link href="/static/inspinia/css/style.css" rel="stylesheet">
+</head>
+
+<body class="gray-bg flex-center">
+<div class="middle-box-login text-center animated fadeInDown flex-center-item">
+    <div style="width: 400px">
+        <div class="logo-name">登录</div>
+        <form class="m-t">
+            <div class="form-group">
+                <input type="text" class="form-control" autocomplete="off" placeholder="账号" id="userName">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" autocomplete="off"  placeholder="密码" id="password">
+            </div>
+            <div class="form-group" style="position: relative">
+                <input type="text" name="code" placeholder="验证码" autocomplete="off" class="form-username form-control" id="code" style="width: 70%;"/>
+                <img src="/code" id="validateCodeImg" onclick="reloadCode()" style="position: absolute;right: 0px;bottom: 0px;"/>
+            </div>
+            <button type="button" class="btn btn-primary block full-width m-b" onclick="toLogin()">登录</button>
+        </form>
+        <p class="m-t"> <small>系统管理</small> </p>
+    </div>
+</div>
+
+<!-- Mainly scripts -->
+<script src="/static/inspinia/js/jquery-3.1.1.min.js"></script>
+<script src="/static/inspinia/js/popper.min.js"></script>
+<script src="/static/inspinia/js/bootstrap.js"></script>
+<script src="/static/layer/layer.js"></script>
+<script src="/static/layer/extendLayer.js"></script>
+<script src="/static/js/user/login.js"></script>
+</body>
+</html>

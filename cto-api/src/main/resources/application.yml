@@ -1,0 +1,52 @@
+#配置服务端口
+server:
+  port: 8090
+logging:
+  level:
+    com:
+      cto:
+        freemarker: DEBUG
+    org:
+      springframework:
+        web: INFO
+spring:
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/base_freemarker?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: root
+      password: root1234
+      initial-size: 5
+      max-active: 20
+      min-idle: 10
+      max-wait: 60000
+      max-open-prepared-statements: 30
+      validation-query: select 'x'
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 2000
+      max-evictable-idle-time-millis: 1200000
+      min-evictable-idle-time-millis: 600000
+      filters: wall
+      filter:
+        stat:
+          enabled: true
+          log-slow-sql: true
+          slow-sql-millis: 3000
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 1
+    password: root
+    timeout: 5000
+  data:
+    solr:
+      host: http://39.106.26.128:8111/solr/my_core
+#mybatis-plus配置
+mybatis-plus:
+  configuration:
+    #二级缓存关闭
+    cache-enabled: false
+  global-config:
+    db-config:
+      id-type: auto
