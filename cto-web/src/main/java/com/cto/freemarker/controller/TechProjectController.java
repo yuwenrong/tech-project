@@ -3,13 +3,16 @@ package com.cto.freemarker.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.cto.freemarker.common.SessionUtil;
 import com.cto.freemarker.controller.base.BaseController;
+import com.cto.freemarker.entity.AdminUser;
 import com.cto.freemarker.entity.Role;
 import com.cto.freemarker.entity.TechProject;
 import com.cto.freemarker.entity.dto.TechProjectQueryDTO;
 import com.cto.freemarker.service.IRoleService;
 import com.cto.freemarker.service.TechProjectService;
 import com.cto.freemarker.utils.Result;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,11 +34,6 @@ public class TechProjectController extends BaseController {
     @Autowired
     private IRoleService roleService;
 
-    /**
-     * 获取系统用户表列表页
-     *
-     * @return
-     */
     @RequestMapping
     @RequiresPermissions("tech")
     public String index(Model model) {
@@ -77,8 +75,11 @@ public class TechProjectController extends BaseController {
         Date date = new Date();
         if (techProject.getId() == null) {
             techProject.setCreateTime(date);
+            techProject.setCreateUser(getCurrentUser().getId());
             techProjectService.add(techProject);
         } else {
+            techProject.setUpdateTime(date);
+            techProject.setUpdateUser(getCurrentUser().getId());
             techProjectService.updateById(techProject);
         }
         return Result.ok();

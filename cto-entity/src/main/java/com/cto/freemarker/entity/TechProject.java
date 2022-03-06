@@ -29,11 +29,11 @@ public class TechProject extends Model<TechProject> {
 
     private String description;
 
-    private Integer createUser;
+    private Long createUser;
     @TableField(fill = FieldFill.INSERT)
     private Date createTime;
 
-    private Integer updateUser;
+    private Long updateUser;
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
 
