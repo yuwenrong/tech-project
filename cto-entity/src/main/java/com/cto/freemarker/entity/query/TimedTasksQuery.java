@@ -5,7 +5,6 @@
  */
 package com.cto.freemarker.entity.query;
 
-import com.cto.freemarker.entity.TimedTasks;
 import lombok.Data;
 
 /**
