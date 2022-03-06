@@ -69,6 +69,12 @@
                                         <label class="i-checks"> <input type="radio" name="status" value="1" <#if techProject.status == 1 >checked="checked"</#if>/> <i></i>正常</label>
                                     </div>
                                 </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group  row">
+                                    <label class="col-sm-2 col-form-label">备注</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="description" value="${techProject.description}" placeholder="备注" autocomplete="off" class="form-control required" />
+                                    </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group row">
