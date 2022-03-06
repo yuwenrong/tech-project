@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>科技项目-添加</title>
+    <title>良种基地项目-添加</title>
     <#include "../common/include_css.html">
 </head>
 <body class="pace-done fixed-sidebar">
@@ -20,10 +20,10 @@
                         <div class="ibox-title">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="javascript:;">科技项目管理</a>
+                                    <a href="javascript:;">良种基地项目管理</a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="javascript:;">科技项目</a>
+                                    <a href="javascript:;">项目</a>
                                 </li>
                                 <li class="breadcrumb-item active">
                                     <strong>添加项目</strong>
@@ -33,30 +33,44 @@
                         <div class="ibox-content">
                             <form id="dataForm"  onSubmit="return false">
                                 <div class="form-group  row">
-                                    <label class="col-sm-2 col-form-label">项目名称</label>
+                                    <label class="col-sm-2 col-form-label">地块</label>
                                     <div class="col-sm-6">
-                                        <input type="text" name="name" value="" placeholder="请输入项目名称" autocomplete="off" class="form-control required" />
+                                        <input type="text" name="land" value="" placeholder="请输入地块" autocomplete="off" class="form-control required" />
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group  row">
-                                    <label class="col-sm-2 col-form-label">来源</label>
+                                    <label class="col-sm-2 col-form-label">功能区</label>
                                     <div class="col-sm-6">
-                                        <input type="text" name="source" value="" placeholder="来源" autocomplete="off" class="form-control required" />
+                                        <input type="text" name="functionArea" value="" placeholder="功能区" autocomplete="off" class="form-control required" />
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group  row">
-                                    <label class="col-sm-2 col-form-label">开始时间</label>
+                                    <label class="col-sm-2 col-form-label">树种</label>
                                     <div class="col-sm-6">
-                                        <input type="date" name="beginTime" />
+                                        <input type="text" name="treeType" value="" placeholder="树种" autocomplete="off" class="form-control required" />
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group  row">
-                                    <label class="col-sm-2 col-form-label">结束时间</label>
+                                    <label class="col-sm-2 col-form-label">建设时间</label>
                                     <div class="col-sm-6">
-                                        <input type="date" name="endTime" />
+                                        <input type="date" name="buildTime" />
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group  row">
+                                    <label class="col-sm-2 col-form-label">密度</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="density" value="" placeholder="密度" autocomplete="off" class="form-control required" />
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group  row">
+                                    <label class="col-sm-2 col-form-label">种源</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="seedSource" value="" placeholder="种源" autocomplete="off" class="form-control required" />
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
@@ -91,7 +105,7 @@
     </div>
 </div>
 <#include "../common/include_js.html">
-<script src="/static/js/tech/add.js"></script>
+<script src="/static/js/seed/add.js"></script>
 </body>
 </html>
 

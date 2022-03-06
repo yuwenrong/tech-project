@@ -5,13 +5,13 @@ function saveOrUpdate() {
         layer.load(1, {shade: [0.5,'#000']});
         $.ajax({
             data: data,//提交的数据
-            url: "/tech/saveOrUpdate",//提交连接
+            url: "/seed/saveOrUpdate",//提交连接
             type: 'post',
             dataType: 'json',
             success: function (result) {
                 layer.closeAll('loading');
                 if (result.code == 0) {
-                    window.location.href = "/tech";
+                    window.location.href = "/seed";
                 }else {
                     toastr.error(result.msg,'系统通知!')
                 }

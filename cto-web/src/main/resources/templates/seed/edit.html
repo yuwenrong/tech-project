@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>科技项目管理</title>
+    <title>良种基地项目管理</title>
     <#include "../common/include_css.html">
 </head>
 <body class="pace-done fixed-sidebar">
@@ -21,10 +21,10 @@
                         <div class="ibox-title">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="javascript:;">科技项目管理</a>
+                                    <a href="javascript:;">良种基地项目管理</a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="javascript:;">科技项目</a>
+                                    <a href="javascript:;">项目</a>
                                 </li>
                                 <li class="breadcrumb-item active">
                                     <strong>修改项目</strong>
@@ -33,42 +33,55 @@
                         </div>
                         <div class="ibox-content">
                             <form id="dataForm"  onSubmit="return false">
-                                <input type="hidden" name="id" value="${techProject.id}">
+                                <input type="hidden" name="id" value="${seedProject.id}">
                                 <div class="form-group  row">
-                                    <label class="col-sm-2 col-form-label">项目名称</label>
+                                    <label class="col-sm-2 col-form-label">地块</label>
                                     <div class="col-sm-6">
-                                        <input type="text" name="name" value="${techProject.name}" placeholder="请输入项目名称" autocomplete="off" class="form-control required" />
+                                        <input type="text" name="land" value="${seedProject.land}" placeholder="请输入地块" autocomplete="off" class="form-control required" />
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group  row">
-                                    <label class="col-sm-2 col-form-label">来源</label>
+                                    <label class="col-sm-2 col-form-label">功能区</label>
                                     <div class="col-sm-6">
-                                        <input type="text" name="source" value="${techProject.source}" placeholder="请输入来源" autocomplete="off" class="form-control" />
+                                        <input type="text" name="functionArea" value="${seedProject.functionArea}" placeholder="请输入功能区" autocomplete="off" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group  row">
-                                    <label class="col-sm-2 col-form-label">开始时间</label>
+                                    <label class="col-sm-2 col-form-label">树种</label>
                                     <div class="col-sm-6">
-                                        <input type="date" name="beginTime" value="${techProject.beginTime}"/>
+                                        <input type="text" name="treeType" value="${seedProject.treeType}" placeholder="请输入树种" autocomplete="off" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group  row">
-                                    <label class="col-sm-2 col-form-label">结束时间</label>
+                                    <label class="col-sm-2 col-form-label">建设时间</label>
                                     <div class="col-sm-6">
-                                        <input type="date" name="endTime" value="${techProject.endTime}"/>
+                                        <input type="date" name="buildTime" value="${seedProject.buildTime}"/>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group  row">
+                                    <label class="col-sm-2 col-form-label">密度</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="density" value="${seedProject.density}" placeholder="请输入密度" autocomplete="off" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group  row">
+                                    <label class="col-sm-2 col-form-label">种源</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="seedSource" value="${seedProject.seedSource}" placeholder="请输入种源" autocomplete="off" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">状态</label>
                                     <div class="col-sm-6">
-                                        <label class="i-checks"> <input type="radio" name="status" value="0" <#if techProject.status == 0 >checked="checked"</#if>/> <i></i>锁定</label>
-                                        <label class="i-checks"> <input type="radio" name="status" value="1" <#if techProject.status == 1 >checked="checked"</#if>/> <i></i>正常</label>
+                                        <label class="i-checks"> <input type="radio" name="status" value="0" <#if seedProject.status == 0 >checked="checked"</#if>/> <i></i>锁定</label>
+                                        <label class="i-checks"> <input type="radio" name="status" value="1" <#if seedProject.status == 1 >checked="checked"</#if>/> <i></i>正常</label>
                                     </div>
-                                </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group row">
@@ -87,7 +100,7 @@
     </div>
 </div>
 <#include "../common/include_js.html">
-<script src="/static/js/tech/add.js"></script>
+<script src="/static/js/seed/add.js"></script>
 </body>
 </html>
 
