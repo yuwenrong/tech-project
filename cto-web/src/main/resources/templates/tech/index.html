@@ -35,6 +35,23 @@
                                     <button type="button" class="btn btn-sm btn-primary" onclick="window.location.href='/tech/add'">添加</button>
                                 </div>
                             </div>
+
+                            <div class="ibox-content">
+                                <div class="row ">
+                                    <div class="col-xs-12">
+                                        <h3 class="header smaller lighter blue">条件搜索</h3>
+                                        <div class="form-group">
+                                            项目名称：<input id="nameParam" name="nameParam" type="text"/>&nbsp;&nbsp;
+                                            来源：<input id="sourceParam" name="sourceParam" type="text"/>&nbsp;&nbsp;
+                                            起始时间：<input type = "date" id="beginTimeParam" name="beginTimeParam" type="text"/>&nbsp;&nbsp;
+                                            完成时间：<input type = "date" id="endTimeParam" name="endTimeParam" type="text"/>&nbsp;&nbsp;
+                                        </div>
+                                        <button class="btn btn-xs btn-primary" onclick="search();"><i
+                                                class="fa fa-search"></i>&nbsp;查询
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <thead>

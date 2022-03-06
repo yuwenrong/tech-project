@@ -32,7 +32,26 @@
                                 <div class="col-sm-11 m-b-xs">
                                 </div>
                                 <div class="col-sm-1">
-                                    <button type="button" class="btn btn-sm btn-primary" onclick="window.location.href='/seed/add'">添加</button>
+                                    <button type="button" class="btn btn-sm btn-primary"
+                                            onclick="window.location.href='/seed/add'">添加
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="row ">
+                                    <div class="col-xs-12">
+                                        <h3 class="header smaller lighter blue">条件搜索</h3>
+                                        <div class="form-group">
+                                            地块：<input id="landParam" name="landParam" type="text"/>&nbsp;&nbsp;
+                                            功能区：<input id="functionAreaParam" name="functionAreaParam" type="text"/>&nbsp;&nbsp;
+                                            树种：<input id="treeTypeParam" name="treeTypeParam" type="text"/>&nbsp;&nbsp;
+                                            建设开始时间：<input type = "date" id="buildBeginTimeParam" name="buildTimeParam" type="text"/>&nbsp;&nbsp;
+                                            建设结束时间：<input type = "date" id="buildEndTimeParam" name="buildEndTimeParam" type="text"/>&nbsp;&nbsp;
+                                        </div>
+                                        <button class="btn btn-xs btn-primary" onclick="search();"><i
+                                                class="fa fa-search"></i>&nbsp;查询
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -62,7 +81,7 @@
                                     </ul>
                                     <div class="pagination-select">
                                         <span>每页展示条数:</span>
-                                        <select id="pageSize" class="input-mini" >
+                                        <select id="pageSize" class="input-mini">
                                             <option value="10">10</option>
                                             <option value="10" selected="selected">10</option>
                                             <option value="50">50</option>
@@ -84,16 +103,20 @@
 <!--模型-->
 <table style="display: none;">
     <tr id="skillModel">
-        <td key="land" ></td>
-        <td key="functionArea" ></td>
-        <td key="treeType" ></td>
+        <td key="land"></td>
+        <td key="functionArea"></td>
+        <td key="treeType"></td>
         <td key="buildTime" formatDate="yyyy-MM-dd"></td>
-        <td key="density" ></td>
-        <td key="seedSource" ></td>
-        <td key="fosterMag" ><button class="fosterMag" title="详情">详情</button></td>
-        <td key="growthDetermination" ><button class="growthDetermination" title="详情">详情</button></td>
-        <td key="description" ></td>
-        <td key="status" ></td>
+        <td key="density"></td>
+        <td key="seedSource"></td>
+        <td key="fosterMag">
+            <button class="fosterMag" title="详情">详情</button>
+        </td>
+        <td key="growthDetermination">
+            <button class="growthDetermination" title="详情">详情</button>
+        </td>
+        <td key="description"></td>
+        <td key="status"></td>
         <td style="width: 20%">
             <input type="hidden" key="id">
             <button class="btn btn-sm btn-primary edit" title="修改">修改</button>
