@@ -1,22 +1,26 @@
 package com.cto.freemarker.controller;
 
 import com.cto.freemarker.controller.base.BaseController;
-import com.cto.freemarker.entity.ReturnResponse;
+import com.cto.freemarker.service.FileService;
 import com.cto.freemarker.utils.ConfigUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StreamUtils;
+import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.util.HtmlUtils;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.util.*;
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
+import java.net.URLEncoder;
+import java.util.Objects;
 
 @Slf4j
 @Controller
@@ -27,70 +31,74 @@ public class FileController extends BaseController {
     private final String demoDir = "demo";
     private final String demoPath = demoDir + File.separator;
 
+    @Autowired
+    private FileService fileService;
+
+    @SneakyThrows
     @RequestMapping(value = "fileUpload", method = RequestMethod.POST)
     public String fileUpload(@RequestParam("file") MultipartFile file) throws JsonProcessingException {
         // 获取文件名
         String fileName = file.getOriginalFilename();
-        //判断是否为IE浏览器的文件名，IE浏览器下文件名会带有盘符信息
-        // escaping dangerous characters to prevent XSS
-        fileName = HtmlUtils.htmlEscape(fileName, StandardCharsets.UTF_8.name());
-
-        // Check for Unix-style path
-        int unixSep = fileName.lastIndexOf('/');
-        // Check for Windows-style path
-        int winSep = fileName.lastIndexOf('\\');
-        // Cut off at latest possible point
-        int pos = (Math.max(winSep, unixSep));
-        if (pos != -1) {
-            fileName = fileName.substring(pos + 1);
-        }
-        // 判断是否存在同名文件
-        if (existsFile(fileName)) {
-            return new ObjectMapper().writeValueAsString(ReturnResponse.failure("存在同名文件，请先删除原有文件再次上传"));
-        }
-        File outFile = new File(fileDir + demoPath);
-        if (!outFile.exists() && !outFile.mkdirs()) {
-            log.error("创建文件夹【{}】失败，请检查目录权限！", fileDir + demoPath);
-        }
-        log.info("上传文件：{}", fileDir + demoPath + fileName);
-        try (InputStream in = file.getInputStream(); OutputStream out = new FileOutputStream(fileDir + demoPath + fileName)) {
-            StreamUtils.copy(in, out);
-            return new ObjectMapper().writeValueAsString(ReturnResponse.success(null));
-        } catch (IOException e) {
-            log.error("文件上传失败", e);
-            return new ObjectMapper().writeValueAsString(ReturnResponse.failure());
-        }
+        return fileService.upload(fileName, file.getInputStream());
     }
 
     @RequestMapping(value = "deleteFile", method = RequestMethod.GET)
     public String deleteFile(String fileName) throws JsonProcessingException {
-        if (fileName.contains("/")) {
-            fileName = fileName.substring(fileName.lastIndexOf("/") + 1);
-        }
-        File file = new File(fileDir + demoPath + fileName);
-        log.info("删除文件：{}", file.getAbsolutePath());
-        if (file.exists() && !file.delete()) {
-            log.error("删除文件【{}】失败，请检查目录权限！", file.getPath());
-        }
-        return new ObjectMapper().writeValueAsString(ReturnResponse.success());
+        return fileService.deleteFile(fileName);
     }
 
-    @RequestMapping(value = "listFiles", method = RequestMethod.GET)
-    public String getFiles() throws JsonProcessingException {
-        List<Map<String, String>> list = new ArrayList<>();
-        File file = new File(fileDir + demoPath);
-        if (file.exists()) {
-            Arrays.stream(Objects.requireNonNull(file.listFiles())).forEach(file1 -> {
-                Map<String, String> fileName = new HashMap<>();
-                fileName.put("fileName", demoDir + "/" + file1.getName());
-                list.add(fileName);
-            });
-        }
-        return new ObjectMapper().writeValueAsString(list);
-    }
+//    @RequestMapping(value = "listFiles", method = RequestMethod.GET)
+//    public String getFiles() throws JsonProcessingException {
+//        List<Map<String, String>> list = new ArrayList<>();
+//        File file = new File(fileDir + demoPath);
+//        if (file.exists()) {
+//            Arrays.stream(Objects.requireNonNull(file.listFiles())).forEach(file1 -> {
+//                Map<String, String> fileName = new HashMap<>();
+//                fileName.put("fileName", demoDir + "/" + file1.getName());
+//                list.add(fileName);
+//            });
+//        }
+//        return new ObjectMapper().writeValueAsString(list);
+//    }
 
-    private boolean existsFile(String fileName) {
-        File file = new File(fileDir + demoPath + fileName);
-        return file.exists();
+
+    public void downLoad(HttpServletResponse response, String downloadUrl) throws Throwable {
+        String filePath = fileDir + demoPath + downloadUrl;
+        if (Objects.isNull(filePath)) {
+            // 如果接收参数为空则抛出异常，由全局异常处理类去处理。
+            throw new NullPointerException("下载地址为空");
+        }
+        // 读文件
+        File file = new File(filePath);
+        if (!file.exists()) {
+            log.error("下载文件的地址不存在:{}", file.getPath());
+            // 如果不存在则抛出异常，由全局异常处理类去处理。
+            throw new HttpMediaTypeNotAcceptableException("文件不存在");
+        }
+        // 获取用户名
+        String fileName = file.getName();
+        // 重置response
+        response.reset();
+        // ContentType，即告诉客户端所发送的数据属于什么类型
+        response.setContentType("application/octet-stream; charset=UTF-8");
+        // 获得文件的长度
+        response.setHeader("Content-Length", String.valueOf(file.length()));
+        // 设置编码格式
+        response.setHeader("Content-Disposition", "attachment;fileName=" + URLEncoder.encode(fileName, "UTF-8"));
+        // 发送给客户端的数据
+        OutputStream outputStream = response.getOutputStream();
+        byte[] buff = new byte[1024];
+        BufferedInputStream bis = null;
+        // 读取文件
+        bis = new BufferedInputStream(new FileInputStream(new File(filePath)));
+        int i = bis.read(buff);
+        // 只要能读到，则一直读取
+        while (i != -1) {
+            // 将文件写出
+            outputStream.write(buff, 0, buff.length);
+            // 刷出
+            outputStream.flush();
+            i = bis.read(buff);
+        }
     }
 }
