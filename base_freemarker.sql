@@ -374,28 +374,29 @@ CREATE TABLE `tech_project`
     `create_user` bigint(20) DEFAULT NULL COMMENT '添加人ID',
     `update_time` datetime                   DEFAULT NULL COMMENT '更新时间',
     `update_user` bigint(20) DEFAULT NULL COMMENT '更新人ID',
-    `status` char(1) CHARACTER SET utf8 DEFAULT NULL COMMENT '删除状态(0否1是)',
+    `status`      char(1) CHARACTER SET utf8 DEFAULT NULL COMMENT '删除状态(0否1是)',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='科技项目表';
 
 
 
-
-
 CREATE TABLE `seed_project`
 (
-    `id`          bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-    `land`        varchar(400) NOT NULL COMMENT '地块',
-    `functionArea`      varchar(20)  NOT NULL COMMENT '功能区',
-    `treeType`  varchar(20)     NOT NULL COMMENT '树种',
-    `buildTime`    datetime     NOT NULL COMMENT '建设时间',
-    `density`      varchar(20)  NOT NULL COMMENT '密度',
-    `seedSource`      varchar(20)  NOT NULL COMMENT '种子来源',
-    `description` varchar(400) NOT NULL COMMENT '描述',
-    `create_time` datetime     NOT NULL COMMENT '添加时间',
-    `create_user` bigint(20) DEFAULT NULL COMMENT '添加人ID',
-    `update_time` datetime                   DEFAULT NULL COMMENT '更新时间',
-    `update_user` bigint(20) DEFAULT NULL COMMENT '更新人ID',
-    `status` char(1) CHARACTER SET utf8 DEFAULT NULL COMMENT '删除状态(0否1是)',
+    `id`            BIGINT(19) NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `land`          VARCHAR(400) NOT NULL COMMENT '地块' COLLATE 'utf8mb4_0900_ai_ci',
+    `function_area` VARCHAR(20)  NOT NULL COMMENT '功能区' COLLATE 'utf8mb4_0900_ai_ci',
+    `tree_type`     VARCHAR(20)  NOT NULL COMMENT '树种' COLLATE 'utf8mb4_0900_ai_ci',
+    `build_time`    DATETIME     NOT NULL COMMENT '建设时间',
+    `density`       VARCHAR(20)  NOT NULL COMMENT '密度' COLLATE 'utf8mb4_0900_ai_ci',
+    `seed_source`   VARCHAR(20)  NOT NULL COMMENT '种子来源' COLLATE 'utf8mb4_0900_ai_ci',
+    `description`   VARCHAR(400) NOT NULL COMMENT '描述' COLLATE 'utf8mb4_0900_ai_ci',
+    `create_time`   DATETIME     NOT NULL COMMENT '添加时间',
+    `create_user`   BIGINT(19) NULL DEFAULT NULL COMMENT '添加人ID',
+    `update_time`   DATETIME NULL DEFAULT NULL COMMENT '更新时间',
+    `update_user`   BIGINT(19) NULL DEFAULT NULL COMMENT '更新人ID',
+    `status`        CHAR(1) NULL DEFAULT NULL COMMENT '删除状态(0否1是)' COLLATE 'utf8_general_ci',
     PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='良种基地项目表';
+) COMMENT='良种基地项目表'
+COLLATE='utf8mb4_0900_ai_ci'
+ENGINE=InnoDB
+;
