@@ -1,14 +1,11 @@
 package com.cto.freemarker.service;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.cto.freemarker.entity.Role;
 import com.cto.freemarker.entity.TechProject;
 import com.cto.freemarker.entity.dto.TechProjectQueryDTO;
 
 import java.util.List;
-import java.util.Map;
 
 public interface TechProjectService {
 
