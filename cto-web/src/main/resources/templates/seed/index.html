@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>科技项目</title>
+    <title>良种基地项目</title>
     <#include "../common/include_css.html">
 </head>
 <body class="pace-done fixed-sidebar">
@@ -20,10 +20,10 @@
                         <div class="ibox-title">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="javascript:;">科技项目管理</a>
+                                    <a href="javascript:;">良种基地管理系统</a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <strong>科技项目</strong>
+                                    <strong>项目</strong>
                                 </li>
                             </ol>
                         </div>
@@ -32,19 +32,21 @@
                                 <div class="col-sm-11 m-b-xs">
                                 </div>
                                 <div class="col-sm-1">
-                                    <button type="button" class="btn btn-sm btn-primary" onclick="window.location.href='/tech/add'">添加</button>
+                                    <button type="button" class="btn btn-sm btn-primary" onclick="window.location.href='/seed/add'">添加</button>
                                 </div>
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th>项目名称</th>
-                                        <th>来源</th>
-                                        <th>起始时间</th>
-                                        <th>完成时间</th>
-                                        <th>批复文件</th>
-                                        <th>项目成果</th>
+                                        <th>地块</th>
+                                        <th>功能区</th>
+                                        <th>树种</th>
+                                        <th>建设时间</th>
+                                        <th>密度</th>
+                                        <th>种源</th>
+                                        <th>抚育管理</th>
+                                        <th>成长测定</th>
                                         <th>备注</th>
                                         <th>状态</th>
                                         <th><i class=" icon-edit"></i> 操作</th>
@@ -82,12 +84,14 @@
 <!--模型-->
 <table style="display: none;">
     <tr id="skillModel">
-        <td key="name" ></td>
-        <td key="source" ></td>
-        <td key="beginTime" formatDate="yyyy-MM-dd"></td>
-        <td key="endTime" formatDate="yyyy-MM-dd"></td>
-        <td key="file" ><button class="files" title="详情">详情</button></td>
-        <td key="result" ><button class="results" title="详情">详情</button></td>
+        <td key="land" ></td>
+        <td key="functionArea" ></td>
+        <td key="treeType" ></td>
+        <td key="buildTime" formatDate="yyyy-MM-dd"></td>
+        <td key="density" ></td>
+        <td key="seedSource" ></td>
+        <td key="fosterMag" ><button class="fosterMag" title="详情">详情</button></td>
+        <td key="growthDetermination" ><button class="growthDetermination" title="详情">详情</button></td>
         <td key="description" ></td>
         <td key="status" ></td>
         <td style="width: 20%">
@@ -98,6 +102,6 @@
     </tr>
 </table>
 <#include "../common/include_js.html">
-<script type="text/javascript" src="/static/js/tech/index.js"></script>
+<script type="text/javascript" src="/static/js/seed/index.js"></script>
 </body>
 </html>

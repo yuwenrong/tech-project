@@ -7,9 +7,11 @@ import com.cto.freemarker.entity.dto.SeedProjectQueryDTO;
 import com.cto.freemarker.mapper.SeedProjectMapper;
 import com.cto.freemarker.service.SeedProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class SeedProjectServiceImpl implements SeedProjectService {
 
     @Autowired
