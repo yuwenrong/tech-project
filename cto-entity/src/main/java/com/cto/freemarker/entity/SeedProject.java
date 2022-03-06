@@ -27,13 +27,9 @@ public class SeedProject extends Model<SeedProject> {
 
     private String buildTime;//建设时间
 
-    private Integer density;// 密度
+    private String density;// 密度
 
     private String seedSource;// 种源
-
-    private String fosterMag;//抚育管理
-
-    private String growthDetermination;//成长测定
 
     private String description;//备注
 
