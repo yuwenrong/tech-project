@@ -1,6 +1,5 @@
 package com.cto.freemarker.entity.dto;
 
-import com.cto.freemarker.entity.query.TechProjectParamQuery;
 import lombok.Data;
 
 @Data
@@ -10,5 +9,11 @@ public class TechProjectQueryDTO {
 
     private int pageSize;
 
-    private TechProjectParamQuery searchParam;
+    private String name;
+
+    private String source;
+
+    private String beginTime;
+
+    private String endTime;
 }
