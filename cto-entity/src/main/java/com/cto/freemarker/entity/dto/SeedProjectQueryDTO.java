@@ -1,6 +1,5 @@
 package com.cto.freemarker.entity.dto;
 
-import com.cto.freemarker.entity.query.SeedProjectParamQuery;
 import lombok.Data;
 
 @Data
@@ -10,5 +9,13 @@ public class SeedProjectQueryDTO {
 
     private int pageSize;
 
-    private SeedProjectParamQuery searchParam;
+    private String land;
+
+    private String functionArea;
+
+    private String treeType;
+
+    private String buildBeginTime;
+
+    private String buildEndTime;
 }

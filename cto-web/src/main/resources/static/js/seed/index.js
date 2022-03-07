@@ -12,7 +12,14 @@ function loadPage(page) {
         url: "/seed/page",//提交连接
         model: $("#skillModel"),
         pageModel:$("#pageModel"),
-        data: {"pageSize":$("#pageSize").val()},
+        data: {
+            "pageSize":$("#pageSize").val(),
+            "land":$("#landParam").val(),
+            "functionArea":$("#functionAreaParam").val(),
+            "treeType":$("#treeTypeParam").val(),
+            "buildBeginTime":$("#buildBeginTimeParam").val(),
+            "buildEndTime":$("#buildEndTimeParam").val()
+        },
         pageNum: page,
         callback: function (result) {
             layer.closeAll('loading');
@@ -71,3 +78,8 @@ $(document).on("click", ".delete", function () {
         }
     });
 });
+
+
+function search() {
+    loadPage();
+}
