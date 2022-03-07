@@ -1,6 +1,7 @@
 package com.cto.freemarker.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cto.freemarker.entity.TechProject;
@@ -52,7 +53,7 @@ public class TechProjectServiceImpl implements TechProjectService {
 
     @Override
     public IPage<TechProject> page(Page page, TechProjectQueryDTO search) {
-        LambdaQueryWrapper queryWrapper = new LambdaQueryWrapper();
+        QueryWrapper queryWrapper = new QueryWrapper();
         if(StringUtils.isNotEmpty(search.getName())) {
             queryWrapper.eq("name", search.getName());
         }

@@ -1,6 +1,7 @@
 package com.cto.freemarker.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cto.freemarker.entity.SeedProject;
@@ -47,7 +48,7 @@ public class SeedProjectServiceImpl implements SeedProjectService {
     @Override
     public IPage<SeedProject> page(Page objectPage, SeedProjectQueryDTO search) {
 
-        LambdaQueryWrapper queryWrapper = new LambdaQueryWrapper();
+        QueryWrapper queryWrapper = new QueryWrapper();
         if(StringUtils.isNotEmpty(search.getLand())) {
             queryWrapper.eq("land", search.getLand());
         }
