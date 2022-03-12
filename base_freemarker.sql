@@ -400,3 +400,19 @@ CREATE TABLE `seed_project`
 COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
+
+
+
+CREATE TABLE `tech_file_project`
+(
+    `id`          bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `name`        varchar(400) NOT NULL COMMENT '文件名称',
+    `url`         varchar(20)  NOT NULL COMMENT '文件地址',
+    `create_time` datetime     NOT NULL COMMENT '添加时间',
+    `create_user` bigint(20) DEFAULT NULL COMMENT '添加人ID',
+    `update_time` datetime                   DEFAULT NULL COMMENT '更新时间',
+    `update_user` bigint(20) DEFAULT NULL COMMENT '更新人ID',
+    `status`      char(1) CHARACTER SET utf8 DEFAULT NULL COMMENT '删除状态(0否1是)',
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='科技项目文件表';
+

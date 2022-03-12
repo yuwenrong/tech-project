@@ -2,6 +2,7 @@ package com.cto.freemarker.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.cto.freemarker.entity.TechFileProject;
 import com.cto.freemarker.entity.TechProject;
 import com.cto.freemarker.entity.dto.TechProjectQueryDTO;
 
@@ -23,4 +24,5 @@ public interface TechProjectService {
 
     void updateById(TechProject techProject);
 
+    IPage<TechFileProject> filePage(Page<Object> objectPage);
 }

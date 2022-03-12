@@ -23,7 +23,7 @@
                                     <a href="javascript:;">科技项目管理</a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <strong>科技项目</strong>
+                                    <strong>文件</strong>
                                 </li>
                             </ol>
                         </div>
@@ -32,38 +32,18 @@
                                 <div class="col-sm-11 m-b-xs">
                                 </div>
                                 <div class="col-sm-1">
-                                    <button type="button" class="btn btn-sm btn-primary" onclick="window.location.href='/tech/add'">添加</button>
+<!--                                    /// onclick="window.location.href='/tech/file/add'"-->
+                                    <button type="button" class="btn btn-sm btn-primary file-add" >添加</button>
                                 </div>
                             </div>
 
-                            <div class="ibox-content">
-                                <div class="row ">
-                                    <div class="col-xs-12">
-                                        <h3 class="header smaller lighter blue">条件搜索</h3>
-                                        <div class="form-group">
-                                            项目名称：<input id="nameParam" name="nameParam" type="text"/>&nbsp;&nbsp;
-                                            来源：<input id="sourceParam" name="sourceParam" type="text"/>&nbsp;&nbsp;
-                                            起始时间：<input type = "date" id="beginTimeParam" name="beginTimeParam" type="text"/>&nbsp;&nbsp;
-                                            完成时间：<input type = "date" id="endTimeParam" name="endTimeParam" type="text"/>&nbsp;&nbsp;
-                                        </div>
-                                        <button class="btn btn-xs btn-primary" onclick="search();"><i
-                                                class="fa fa-search"></i>&nbsp;查询
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="table-responsive">
                                 <table class="table table-striped">
+                                    <input type="hidden" key="techId" id="techId", value="${techId}">
                                     <thead>
                                     <tr>
-                                        <th>项目名称</th>
-                                        <th>来源</th>
-                                        <th>起始时间</th>
-                                        <th>完成时间</th>
-                                        <th>批复文件</th>
-                                        <th>项目成果</th>
-                                        <th>备注</th>
-                                        <th>状态</th>
+                                        <th>文件名称</th>
+                                        <th>文件地址</th>
                                         <th><i class=" icon-edit"></i> 操作</th>
                                     </tr>
                                     </thead>
@@ -90,7 +70,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
         <#include "../common/footer.html">
@@ -100,27 +79,16 @@
 <table style="display: none;">
     <tr id="skillModel">
         <td key="name" ></td>
-        <td key="source" ></td>
-        <td key="beginTime" formatDate="yyyy-MM-dd"></td>
-        <td key="endTime" formatDate="yyyy-MM-dd"></td>
-        <td key="file" >
-            <input type="hidden" key="id">
-            <button class="files" title="详情">详情</button>
-        </td>
-        <td key="result" >
-            <input type="hidden" key="id">
-            <button class="results" title="详情">详情</button>
-        </td>
-        <td key="description" ></td>
-        <td key="status" ></td>
+        <td key="url" ></td>
         <td style="width: 20%">
             <input type="hidden" key="id">
             <button class="btn btn-sm btn-primary edit" title="修改">修改</button>
             <button class="btn btn-sm btn-default delete" title="删除">删除</button>
+            <button class="btn btn-sm btn-info upload" onclick="downLoad()" type="button">下载</button>
         </td>
     </tr>
 </table>
 <#include "../common/include_js.html">
-<script type="text/javascript" src="/static/js/tech/index.js"></script>
+<script type="text/javascript" src="/static/js/tech/file-index.js"></script>
 </body>
 </html>

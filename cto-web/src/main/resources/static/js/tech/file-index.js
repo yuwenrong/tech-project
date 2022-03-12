@@ -14,17 +14,16 @@ $("#pageSize").change(function () {
 
 function loadPage(page) {
     layer.load(1, {shade: [0.5, '#000']});
+    var id = $(this).parent().find("[key=id]").val();
     $("#itemsPanel").skillAjax({
-        url: "/tech/page",//提交连接
+        url: "/tech/file/page",//提交连接
         model: $("#skillModel"),
         pageModel: $("#pageModel"),
         data: {
             "pageSize": $("#pageSize").val(),
-            "name": $("#nameParam").val(),
-            "source": $("#sourceParam").val(),
-            "beginTime": $("#beginTimeParam").val(),
-            "endTime": $("#endTimeParam").val()
+            "techId": $("#pageSize").val()
         },
+
         pageNum: page,
         callback: function (result) {
             layer.closeAll('loading');
@@ -48,7 +47,7 @@ function loadPage(page) {
 //进入修改页面
 $(document).on("click", ".edit", function () {
     var id = $(this).parent().find("[key=id]").val();
-    window.location.href = "/tech/edit?id=" + id;
+    window.location.href = "/tech/file/edit?id=" + id;
 });
 //删除
 $(document).on("click", ".delete", function () {
@@ -67,7 +66,7 @@ $(document).on("click", ".delete", function () {
                 $.ajax({
                     type: 'post',
                     dataType: 'json',
-                    url: "/tech/delete",
+                    url: "/tech/file/delete",
                     data: {"id": id},
                     success: function (result) {
                         layer.closeAll('loading');
@@ -89,13 +88,14 @@ function search() {
 }
 
 
+//进入修改页面
 $(document).on("click", ".files", function () {
     var id = $(this).parent().find("[key=id]").val();
     window.location.href = "/tech/files?id=" + id;
 });
 
 
-$(document).on("click", ".results", function () {
-    var id = $(this).parent().find("[key=id]").val();
-    window.location.href = "/tech/files?id=" + id;
+$(document).on("click", ".file-add", function () {
+    var tech = $("#pageSize").val()
+    window.location.href = "/tech/file/add?tech=" + tech;
 });

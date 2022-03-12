@@ -3,16 +3,15 @@ package com.cto.freemarker.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.cto.freemarker.common.SessionUtil;
 import com.cto.freemarker.controller.base.BaseController;
-import com.cto.freemarker.entity.AdminUser;
 import com.cto.freemarker.entity.Role;
+import com.cto.freemarker.entity.TechFileProject;
 import com.cto.freemarker.entity.TechProject;
+import com.cto.freemarker.entity.dto.TechFileQueryDTO;
 import com.cto.freemarker.entity.dto.TechProjectQueryDTO;
 import com.cto.freemarker.service.IRoleService;
 import com.cto.freemarker.service.TechProjectService;
 import com.cto.freemarker.utils.Result;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -91,5 +90,34 @@ public class TechProjectController extends BaseController {
     public Object delete(Long id, Model model) {
         techProjectService.deleteById(id.intValue());
         return Result.ok();
+    }
+
+
+    @RequestMapping("/files")
+    public String filesIndex(Long id, Model model) {
+        model.addAttribute("techId", id);
+        TechProject techProject = techProjectService.queryById(id.intValue());
+        model.addAttribute("techProject", techProject);
+        return "tech/file-index";
+    }
+
+
+    @RequestMapping("/file/page")
+    @ResponseBody
+    public IPage<TechFileProject> listFiles(TechFileQueryDTO techFileQueryDTO, Model model) {
+        model.addAttribute("techId", techFileQueryDTO.getTechId());
+        return techProjectService.filePage(new Page<>(1, 10));
+    }
+
+
+
+    @RequestMapping(value = "file/add")
+    public String addFile(Long techId, Model model) {
+        Role role = new Role();
+        role.setStatus("1");
+        List<Role> roleList = roleService.list(Wrappers.lambdaQuery(role));
+        model.addAttribute("roleList", roleList);
+        model.addAttribute("techId", techId);
+        return "tech/add-file";
     }
 }
